@@ -1,0 +1,11 @@
+---
+- name: Add authorized keys
+  ansible.posix.authorized_key:
+    user: "{{ item.username }}"
+    key: "{{ item.ssh_key }}"
+    exclusive: true
+    state: "{{ item.state }}"
+  when: "item.group_names | intersect(group_names)"
+  loop: "{{ admins }}"
+  loop_control:
+    label: "username: {{ item.username }}"

@@ -1,0 +1,9 @@
+---
+nginx_deb_packages:
+  - nginx
+
+# Does the service start at boot time
+nginx_enabled: true
+
+# The service state when the tasks for the role are completed.
+nginx_state: started

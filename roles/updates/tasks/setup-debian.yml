@@ -1,0 +1,36 @@
+---
+- name: Set up automatic upgrades
+  ansible.builtin.lineinfile:
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    create: true
+    mode: '0644'
+  loop:
+    # Update package lists every day
+    - { regexp: 'APT::Periodic::Update-Package-Lists',
+        line: 'APT::Periodic::Update-Package-Lists "1";' }
+    # Download upgraded packages every day
+    - { regexp: 'APT::Periodic::Download-Upgradeable-Packages',
+        line: 'APT::Periodic::Download-Upgradeable-Packages "1";' }
+    # Clean the download archive every week
+    - { regexp: 'APT::Periodic::AutocleanInterval',
+        line: 'APT::Periodic::AutocleanInterval "7";' }
+    # Run upgrades every day
+    - { regexp: 'APT::Periodic::Unattended-Upgrade',
+        line: 'APT::Periodic::Unattended-Upgrade "1";' }
+
+- name: Set up unattended upgrades
+  ansible.builtin.lineinfile:
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    create: true
+    mode: '0644'
+  loop:
+    # Do automatic removal of unused packages after the upgrade
+    # (equivalent to apt-get autoremove)
+    - { regexp: 'Unattended-Upgrade::Remove-Unused-Dependencies',
+        line: 'Unattended-Upgrade::Remove-Unused-Dependencies "true";' }

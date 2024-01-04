@@ -1,0 +1,25 @@
+---
+postgresql_signing_keys:
+  - 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
+
+postgresql_deb_repositories:
+  - 'deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main'
+
+# Remove the version numbers if you just want the latest versions
+# The psycopg2 package is needed on the host so ansible can talk to postgreSQL
+postgresql_deb_packages:
+  - 'postgresql'
+  - 'postgresql-contrib'
+  - 'python3-psycopg2'
+
+# Default port number
+postgresql_port: 5432
+
+# Default locale
+postgresql_locale: en_US.UTF-8
+
+# Does the service start at boot time
+postgresql_enabled: true
+
+# The service state when the tasks for the role are completed.
+postgresql_state: started

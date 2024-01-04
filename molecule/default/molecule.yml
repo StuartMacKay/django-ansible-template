@@ -1,0 +1,26 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  set -e
+  yamllint . -c .yamllint
+  ansible-lint -c .ansible-lint
+platforms:
+  - name: ubuntu-22.04
+    groups:
+      - appserver
+      - production
+    image: geerlingguy/docker-ubuntu2204-ansible:latest
+    pre_build_image: true
+provisioner:
+  name: ansible
+  options:
+    # Prompt for the vault password instead of saving it in plain text to a file
+    ask-vault-pass: true
+  inventory:
+    group_vars:
+      appserver:
+        django_allowed_hosts: "{{ ansible_hostname }}"
+        firewall_installed: false

@@ -1,0 +1,28 @@
+---
+- name: Set up admins as sudoers
+  ansible.builtin.lineinfile:
+    dest: "/etc/sudoers.d/{{ app_name }}"
+    regexp: "^{{ item.username }} "
+    line: "{{ item.username }} ALL=(ALL) ALL"
+    create: true
+    mode: "0440"
+    state: "{{ item.state }}"
+  when: "item.sudo | default(false) and item.group_names | intersect(group_names)"
+  loop: "{{ admins }}"
+  loop_control:
+    label: "username: {{ item.username }} sudo: {{ item.sudo | default(false) }}"
+
+# Make sure the sudoers file preserves the ability to use ssh forwarding.
+# That way we don't need to store a private key on the server to get
+# access to the git repository. Don't forget to add the key used by the
+# git repository to your ssh-agent using ssh-add on the machine where you
+# run the playbooks.
+#
+# https://stackoverflow.com/questions/24124140/ssh-agent-forwarding-with-ansible
+
+- name: Add ssh agent line to sudoers
+  ansible.builtin.lineinfile:
+    dest: "/etc/sudoers.d/{{ app_name }}"
+    state: present
+    regexp: SSH_AUTH_SOCK
+    line: "Defaults env_keep += SSH_AUTH_SOCK"

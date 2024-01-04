@@ -1,0 +1,16 @@
+---
+# Example inventory for production where all the services are
+# hosted on a single server.
+
+appserver:
+  hosts:
+     # IP address or host name
+    192.168.1.1:
+  vars:
+    # The fully-qualified domain name for the app
+    app_domain_name: www.example.com
+
+production:
+  hosts:
+     # IP address or host name
+    192.168.1.1:

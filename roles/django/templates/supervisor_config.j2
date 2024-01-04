@@ -1,0 +1,15 @@
+#jinja2: trim_blocks:False
+[program:{{ app_name }}_django]
+command={{ app_virtualenv_dir }}/bin/gunicorn -c project/gunicorn.py project.wsgi
+user={{ app_user }}
+directory={{ app_backend_dir }}
+environment=
+{%- for variable_name, value in django_environment.items() %}
+  {{ variable_name }}="{{ value }}"{% if not loop.last %},{% endif %}
+{%- endfor %}
+autostart=true
+autorestart=true
+stderr_logfile={{ app_log_dir }}/gunicorn_err.log
+stdout_logfile={{ app_log_dir }}/gunicorn_out.log
+killasgroup=true
+stopasgroup=true

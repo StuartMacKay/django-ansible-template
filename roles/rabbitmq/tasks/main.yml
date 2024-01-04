@@ -1,0 +1,21 @@
+---
+- name: Install rabbitmq for Debian systems
+  ansible.builtin.import_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - rabbitmq
+    - rabbitmq.install
+
+- name: Remove guest user
+  ansible.builtin.import_tasks: remove-guest.yml
+  tags:
+    - rabbitmq
+    - rabbitmq.setup
+
+- name: Set the state of the service
+  ansible.builtin.service:
+    name: rabbitmq-server
+    state: "{{ rabbitmq_state }}"
+  tags:
+    - rabbitmq
+    - rabbitmq.service

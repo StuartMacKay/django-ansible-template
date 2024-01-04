@@ -1,0 +1,33 @@
+#jinja2: trim_blocks:False
+[group:app_celery]
+programs={{ app_name }}_celery_beat,{{ app_name }}_celery_worker
+
+[program:{{ app_name }}_celery_beat]
+command={{ app_virtualenv_dir }}/bin/celery beat --schedule {{ app_run_dir }}/celerybeat-schedule
+user={{ app_user }}
+directory={{ app_root_dir }}
+environment=
+{%- for variable_name, value in celery_environment.items() %}
+  {{ variable_name }}="{{ value }}"{% if not loop.last %},{% endif %}
+{%- endfor %}
+autostart=true
+autorestart=true
+stderr_logfile={{ app_log_dir }}/celery_beat_err.log
+stdout_logfile={{ app_log_dir }}/celery_beat_out.log
+killasgroup=true
+stopasgroup=true
+
+[program:{{ app_name }}_celery_worker]
+command={{ app_virtualenv_dir }}/bin/celery worker
+user={{ app_user }}
+directory={{ app_root_dir }}
+environment=
+{%- for variable_name, value in celery_environment.items() %}
+  {{ variable_name }}="{{ value }}"{% if not loop.last %},{% endif %}
+{%- endfor %}
+autostart=true
+autorestart=true
+stderr_logfile={{ app_log_dir }}/celery_worker_err.log
+stdout_logfile={{ app_log_dir }}/celery_worker_out.log
+killasgroup=true
+stopasgroup=true

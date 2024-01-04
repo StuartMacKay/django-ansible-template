@@ -1,0 +1,38 @@
+---
+# Packages for Debian systems
+memcached_deb_packages:
+  - memcached
+
+# User daemon runs as
+memcached_user: root
+
+# Maximum amount of memory (MB) the cache will eventually occupy
+memcached_memory_mb: 64
+
+# Maximum cache of an item that can be cached
+memcached_item_size: 1m
+
+# Maximum number of simultaneous connections
+memcached_connections: 1024
+
+# Number of threads to create
+memcached_threads: 4
+
+# Log file path
+memcached_log_file: /var/log/memcached/memcached-server.log
+
+# Log file verbosity: "", "-v" or "-vv"
+memcached_verbosity: ""
+
+# Connection port
+memcached_port: 11211
+
+# Connection address (single or cluster)
+memcached_ips:
+  - "127.0.0.1"
+
+# Does the service start at boot time
+memcached_enabled: true
+
+# The service state when the tasks for the role are completed.
+memcached_state: started

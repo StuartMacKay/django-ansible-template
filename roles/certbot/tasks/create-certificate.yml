@@ -1,0 +1,15 @@
+---
+- name: Ensure Nginx is stopped
+  ansible.builtin.service:
+    name: nginx
+    state: stopped
+
+- name: Generate certificate
+  ansible.builtin.command: "/usr/bin/certbot certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ ansible_hostname }}"
+  args:
+    creates: "/etc/letsencrypt/live/{{ ansible_hostname }}/"
+
+- name: Ensure Nginx is started
+  ansible.builtin.service:
+    name: nginx
+    state: started

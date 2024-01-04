@@ -1,0 +1,23 @@
+-d
+-u {{ memcached_user }}
+-m {{ memcached_memory_mb }}
+-c {{ memcached_connections }}
+-I {{ memcached_item_size }}
+-t {{ memcached_threads }}
+
+# Lock down all paged memory. Consult with the README and homepage before you do this
+# -k
+# Return error when memory is exhausted (rather than removing items)
+# -M
+# Maximize core file limit
+# -r
+
+logfile {{ memcached_log_file }}
+{{ memcached_verbosity }}
+
+# Default connection port is 11211
+-p {{ memcached_port }}
+
+{%- for ip in memcached_ips %}
+-l {{ ip }}
+{%- endfor %}

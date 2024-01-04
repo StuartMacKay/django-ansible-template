@@ -1,0 +1,7 @@
+---
+- name: Set up ssh daemon
+  ansible.builtin.import_tasks: setup-sshd.yml
+  tags:
+    - ssh
+    - ssh.setup
+  notify: Restart ssh

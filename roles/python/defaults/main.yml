@@ -1,0 +1,21 @@
+---
+# The version of python to use to run the app
+python_version: 3.11
+
+# The repository used to install python versions
+python_repository: "ppa:deadsnakes/ppa"
+
+# The base set of packages needed to create the vritualenv
+python_packages:
+  - 'python{{ python_version }}-dev'
+  - 'python{{ python_version }}-distutils'
+  - 'python{{ python_version }}-venv'
+
+# The name of the virtualenv directory
+python_virtualenv_name: ".venv"
+
+# The absolute path to where the virtualenv will be created
+python_virtualenv_dir: "{{ app_backend_dir }}/{{ python_virtualenv_name }}"
+
+# The dependencies required to run the app
+python_requirements_file: "{{ app_backend_dir }}/requirements/{{ env_name }}.txt"

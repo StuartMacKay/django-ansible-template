@@ -1,0 +1,18 @@
+---
+- name: Set default policy
+  community.general.ufw:
+    state: enabled
+    policy: deny
+
+- name: Open ssh port
+  community.general.ufw:
+    rule: allow
+    port: 22
+
+- name: Open web ports
+  community.general.ufw:
+    rule: allow
+    port: "{{ item }}"
+  loop:
+    - 80
+    - 443

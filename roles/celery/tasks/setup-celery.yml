@@ -1,0 +1,9 @@
+---
+- name: Delete compiled python files
+  ansible.builtin.command: "find {{ app_backend_dir }} -type f -name \"*.py[co]\" -delete -o -type d -name __pycache__ -delete"
+  args:
+    chdir: "{{ item }}"
+  loop:
+    - "{{ app_virtualenv_dir }}"
+    - "{{ app_backend_dir }}"
+  changed_when: false

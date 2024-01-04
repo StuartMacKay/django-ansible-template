@@ -1,0 +1,5 @@
+---
+- name: Install requirements
+  ansible.builtin.pip:
+    virtualenv: "{{ python_virtualenv_dir }}"
+    requirements: "{{ python_requirements_file }}"

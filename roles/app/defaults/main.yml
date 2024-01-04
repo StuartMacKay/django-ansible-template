@@ -1,0 +1,25 @@
+---
+# The absolute path to the directory containing the backend code (Django)
+app_backend_dir: "{{ app_root_dir }}/backend"
+# The absolute path to the directory for the virtualenv
+app_virtualenv_dir: "{{ app_backend_dir }}/.venv"
+# The absolute path to the directory containing the frontend code (e.g. React)
+app_frontend_dir: "{{ app_root_dir }}/frontend"
+# The absolute path to the directory where uploaded files will be stored
+app_media_dir: "{{ app_root_dir }}/media"
+# The absolute path to the directory where static files will be collected and served from
+app_static_dir: "{{ app_root_dir }}/static"
+# The absolute path to the directory where the main app templates are
+app_template_dir: "{{ app_backend_dir }}/project/templates"
+
+# The absolute path to the directory where log files are written
+app_log_dir: "/var/log/{{ app_name }}"
+# The absolute path to the directory used for run-time files
+app_run_dir: "/var/run/{{ app_name }}"
+# The absolute path to the directory used for temporary files, see tasks/checkout-source.yml
+app_tmp_dir: "/var/tmp"
+
+# The group that nginx belongs to
+app_webserver_group: "www-data"
+# The group that the admin users belong to
+app_admin_group: "adm"

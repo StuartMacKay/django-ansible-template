@@ -1,0 +1,28 @@
+- name: Verify
+  hosts: appserver
+
+  tasks:
+    - name: Verify Nginx is serving web requests
+      ansible.builtin.uri:
+        url: "https://{{ ansible_hostname }}/watchman/?watchman-token=:token"
+        validate_certs: false
+        status_code: 200
+        body_format: json
+        body: >
+          {
+              "databases": [
+                  {
+                      "default": {
+                          "ok": true
+                      }
+                  }
+              ],
+              "caches": [
+                  {
+                      "default": {
+                          "ok": true
+                      }
+                  }
+              ],
+              "storage": {"ok": true}
+          }

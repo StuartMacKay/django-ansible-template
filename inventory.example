@@ -1,0 +1,22 @@
+# Example inventory for a production deploy
+
+# The domain name is only needed for production and uses a variable because:
+# 1) Django's ALLOWED_HOSTS setting needs to be set to either inventory_hostname
+#    for deploys or ansible_hostname when running the molecule tests using Docker
+# 2) Nginx's server_name directive is either set to inventory_hostname when it is
+#    set to a fully-qualified domain name or the catch-all empty string for local
+#    deployments or when running tests.
+# The two situations overlap and introducing a new variable was the simplest and
+# most unambiguous solution. See,
+# molecule/default/molecule.yml, line 25
+# roles/django/defaults/main.yml, line 19
+# roles/django/templates/nginx_config.js, lines 14, 27, 29, 46/
+
+[appserver]
+www.example.com
+
+[appserver:vars]
+app_domain_name=www.example.com
+
+[production]
+www.example.com

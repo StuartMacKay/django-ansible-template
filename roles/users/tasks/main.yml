@@ -1,0 +1,24 @@
+---
+- name: Create user for app
+  ansible.builtin.import_tasks: setup-app-user.yml
+  tags:
+    - app
+    - app.user
+
+- name: Set up admins
+  ansible.builtin.import_tasks: setup-admins.yml
+  tags:
+    - users
+    - users.admins
+
+- name: Set up sudoers
+  ansible.builtin.import_tasks: setup-sudoers.yml
+  tags:
+    - users
+    - users.sudoers
+
+- name: Set up authorized keys
+  ansible.builtin.import_tasks: setup-authorized-keys.yml
+  tags:
+    - users
+    - users.authorized-keys

@@ -1,0 +1,21 @@
+---
+- name: Add release signing keys
+  ansible.builtin.apt_key:
+    url: "{{ item }}"
+    state: present
+  loop: "{{ rabbitmq_signing_keys }}"
+
+- name: Add repositories
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+    state: present
+  loop: "{{ rabbitmq_deb_repositories }}"
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ rabbitmq_deb_packages }}"
+
+- name: Enable/disable the service at boot
+  ansible.builtin.service:
+    name: rabbitmq-server
+    enabled: "{{ rabbitmq_enabled }}"

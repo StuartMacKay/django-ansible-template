@@ -1,0 +1,54 @@
+---
+# The runtime directory is where the socket file is created that connects
+# gunicorn and nginx. Gunicorn needs write permission to the directory to
+# create the file. Both processes need read and execute permission to access
+# the directory. Gunicorn creates the socket file with 777 so anybody can
+# access it, so the directory is created with access by others disabled.
+- name: Create the runtime directory
+  ansible.builtin.file:
+    path: "{{ app_run_dir }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_webserver_group }}"
+    mode: '0750'
+    state: directory
+
+# The project directory is owned by root so when the repository is checked
+# out, by root, git does not report an 'unsafe directory' error. All the
+# files in the project root directory are read-only and nothing is written
+# there so there is no need to grant write access to anybody else.
+- name: Create the project directory
+  ansible.builtin.file:
+    path: "{{ app_root_dir }}"
+    mode: '0705'
+    state: directory
+
+# The directory nfor media files (uploads) eeds to be writable by the app
+# user when file are uploaded and readable by the web server. That's all.
+- name: Create the media directory
+  ansible.builtin.file:
+    path: "{{ app_media_dir }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_webserver_group }}"
+    mode: '0750'
+    state: directory
+
+# The directory for static files needs to be writeable by the app user when
+# collectstatic is run. Since whitenoise is used to serve the files only the
+# app user needs read access.
+- name: Create the static directory
+  ansible.builtin.file:
+    path: "{{ app_static_dir }}"
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
+    mode: '0750'
+    state: directory
+
+# The log directory and log files are owned by root, since supervisor runs
+# as root. Everybody else has read access. We can lock this down by granting
+# group access to the administrator group and blocking everybody else.
+- name: Create the log directory
+  ansible.builtin.file:
+    path: "{{ app_log_dir }}"
+    group: "{{ app_admin_group }}"
+    mode: '0750'
+    state: directory

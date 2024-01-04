@@ -1,0 +1,36 @@
+---
+- name: Secure ssh daemon
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#? ?{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    validate: "sshd -T -f %s"
+    mode: 0644
+  loop:
+    - regexp: 'PasswordAuthentication'
+      line: 'PasswordAuthentication no'
+    - regexp: 'PermitRootLogin'
+      line: 'PermitRootLogin no'
+    - regexp: 'UseDNS'
+      line: 'UseDNS no'
+    - regexp: 'PermitEmptyPasswords'
+      line: 'PermitEmptyPasswords no'
+    - regexp: 'ChallengeResponseAuthentication'
+      line: 'ChallengeResponseAuthentication no'
+    - regexp: 'GSSAPIAuthentication'
+      line: 'GSSAPIAuthentication no'
+    - regexp: 'X11Forwarding'
+      line: 'X11Forwarding no'
+  notify: "Restart ssh"
+
+- name: Only admins can login over ssh
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "AllowUsers"
+    line: 'AllowUsers {{ admins | map(attribute="username") | join(" ") }}'
+    state: present
+    create: true
+    validate: "sshd -T -f %s"
+    mode: "0644"
+  notify: "Restart ssh"

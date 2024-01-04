@@ -1,0 +1,14 @@
+---
+# Packages for Debian systems
+firewall_deb_packages:
+  - ufw
+
+# Flag to control whether firewall is installed.
+# This is switched off when running the molecule tests using docker
+firewall_installed: true
+
+# Does the service start at boot time
+firewall_enabled: true
+
+# The service state when the tasks for the role are completed.
+firewall_state: started

@@ -1,0 +1,57 @@
+---
+- name: Fail if molecule group is missing
+  hosts: localhost
+  tasks:
+    - name: Print some info
+      ansible.builtin.debug:
+        msg: "{{ groups }}"
+
+    - name: Assert group existence
+      ansible.builtin.assert:
+        that: "'molecule' in groups"
+        fail_msg: |
+          molecule group was not found inside inventory groups: {{ groups }}
+
+- name: Converge
+  hosts: molecule
+  # This assumes we are using an image with python already installed, see
+  # https://github.com/geerlingguy/docker-ubuntu2204-ansible/blob/master/Dockerfile
+  gather_facts: true
+  tasks:
+    - name: Check uname
+      ansible.builtin.raw: uname -a
+      register: result
+      changed_when: false
+
+    - name: Print some info
+      ansible.builtin.assert:
+        that: result.stdout | regex_search("^Linux")
+
+    # Tasks added to basic configuration to bring the docker images up to par
+
+    - name: Ensure openssh-server is installed
+      ansible.builtin.apt:
+        update_cache: yes
+        name: openssh-server
+
+     # sshd fails to restart
+     # https://askubuntu.com/questions/1109934/ssh-server-stops-working-after-reboot-caused-by-missing-var-run-sshd/
+     # The latest report is from 16.04 in 2019, yet here we are in 2023 and it's
+     # still present in a 22.04 image.
+    - name: Enable sshd restart on Ubuntu
+      ansible.builtin.command: "mkdir -p /var/run/sshd"
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install packages ansible modules
+      package:
+        name:
+          - python3-psycopg2
+        state: present
+
+      # https://lists.launchpad.net/openjdk/msg12550.html
+      # Bug#863199: error creating symbolic link
+    - name: Create directories
+      ansible.builtin.command: "mkdir -p /usr/share/man/man1"
+
+- name: Run playbook
+  import_playbook: ../../playbook.yml

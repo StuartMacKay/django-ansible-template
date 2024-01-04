@@ -1,0 +1,6 @@
+---
+- name: Set up Debian systems
+  ansible.builtin.import_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - base

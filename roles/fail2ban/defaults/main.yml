@@ -1,0 +1,10 @@
+---
+# Package list for Debian
+fail2ban_deb_packages:
+  - fail2ban
+
+# Does the service start at boot time
+fail2ban_enabled: true
+
+# The service state when the tasks for the role are completed.
+fail2ban_state: started

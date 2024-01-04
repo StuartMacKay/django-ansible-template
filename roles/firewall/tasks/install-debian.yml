@@ -1,0 +1,14 @@
+---
+- name: Install Uncomplicated Firewall
+  ansible.builtin.apt:
+    name: "{{ firewall_deb_packages }}"
+
+- name: Set default policy
+  community.general.ufw:
+    state: enabled
+    policy: deny
+
+- name: Enable/disable the firewall at boot
+  ansible.builtin.service:
+    name: ufw
+    enabled: "{{ firewall_enabled }}"

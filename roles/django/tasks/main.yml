@@ -1,0 +1,33 @@
+---
+- name: Create database
+  ansible.builtin.import_tasks: setup-postgresql.yml
+  tags:
+    - django
+    - django.postgresql
+
+- name: Create rabbitmq vhost
+  ansible.builtin.import_tasks: setup-rabbitmq.yml
+  tags:
+    - django
+    - django.rabbitmq
+
+- name: Add programs to supervisor
+  ansible.builtin.import_tasks: setup-supervisor.yml
+  tags:
+    - django
+    - django.supervisor
+
+- name: Create nginx site
+  ansible.builtin.import_tasks: setup-nginx.yml
+  tags:
+    - django
+    - django.nginx
+
+- name: Setup Django
+  ansible.builtin.import_tasks: setup-django.yml
+  tags:
+    - django
+    - django.setup
+    - deploy
+  notify:
+    - "Restart django"

@@ -1,0 +1,36 @@
+---
+# Plqybook for provisioning an application server.
+#
+# This playbook is for deploying a Django-based web application to a single
+# server. It will work well for local development and is intended as a starting
+# point for developing playbooks for production environments which may be
+# distributed across a cluster.
+#
+# The roles are organised by function/feature. Within each role the tasks
+# are also organised with separate files for each step. The intention is to
+#  make the playbook modular and so easy to comprehend and easy to refactor
+# and add new features. This means there is probably more yaml than is healthy
+# but you will find that things are easy to find and it's easy to throw away
+# the stuff you don't want.
+
+- name: Provision an application server
+  become: true
+  hosts: all
+  roles:
+    - base
+    - users
+    - swap
+    - supervisor
+    - firewall
+    - fail2ban
+    - ssh
+    - updates
+    - nginx
+    - certbot
+    - memcached
+    - rabbitmq
+    - postgresql
+    - app
+    - python
+    - django
+    - celery

@@ -1,0 +1,10 @@
+---
+- name: Set up Memcached
+  ansible.builtin.template:
+    src: memcached-debian.conf.j2
+    dest: /etc/memcached.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - "Restart memcached"

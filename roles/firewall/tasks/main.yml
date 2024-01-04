@@ -1,0 +1,23 @@
+---
+- name: Install firewall for Debian systems
+  ansible.builtin.import_tasks: install-debian.yml
+  when: firewall_installed and ansible_os_family == 'Debian'
+  tags:
+    - firewall
+    - firewall.install
+
+- name: Apply rules
+  ansible.builtin.import_tasks: setup-firewall.yml
+  when: firewall_installed
+  tags:
+    - firewall
+    - firewall.setup
+
+- name: Set the state of the service
+  ansible.builtin.service:
+    name: supervisor
+    state: "{{ firewall_state }}"
+  when: firewall_installed
+  tags:
+    - firewall
+    - firewall.service

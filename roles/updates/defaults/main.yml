@@ -1,0 +1,5 @@
+---
+# Packages for Debian based systems
+updates_deb_packages:
+  - update-notifier-common
+  - unattended-upgrades

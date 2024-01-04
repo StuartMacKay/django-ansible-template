@@ -1,0 +1,26 @@
+---
+- name: Add release signing keys
+  ansible.builtin.apt_key:
+    url: "{{ item }}"
+    state: present
+  loop: "{{ postgresql_signing_keys }}"
+
+- name: Add repositories
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+    state: present
+  loop: "{{ postgresql_deb_repositories }}"
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ postgresql_deb_packages }}"
+
+- name: Ensure locale is available
+  community.general.locale_gen:
+    name: "{{ postgresql_locale }}"
+    state: present
+
+- name: Enable/disable the service at boot
+  ansible.builtin.service:
+    name: postgresql
+    enabled: "{{ postgresql_enabled }}"

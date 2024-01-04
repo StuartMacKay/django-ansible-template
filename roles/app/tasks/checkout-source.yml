@@ -1,0 +1,26 @@
+---
+
+# We can happily check the project out as root and leave the ownership
+# unchanged as the app user only needs to access the directories and
+# read the files. Since the directory is also owned by root we don't get
+# the safe directory error.
+#
+# The git module calls python's tempfile.mkstemp() which uses the TMPDIR
+# environment variable. However this is set to /tmp which is mounted as
+# noexec. As a result the git command will fail. The solution is to set
+# TMPDIR to point to some other suitable location. Here we use /var/tmp
+# but any suitable location will do.
+#
+# https://github.com/ansible/ansible/issues/30064
+# https://docs.python.org/dev/library/tempfile.html?highlight=mkstemp#tempfile.tempdir
+
+- name: Setup the Git repo
+  ansible.builtin.git:
+    repo: "{{ app_repository }}"
+    version: "{{ app_version }}"
+    single_branch: true
+    dest: "{{ app_root_dir }}"
+    accept_hostkey: true
+    force: true
+  environment:
+    TMPDIR: "{{ app_tmp_dir }}"

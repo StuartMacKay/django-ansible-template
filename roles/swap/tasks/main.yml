@@ -1,0 +1,11 @@
+---
+- name: Disable swap
+  ansible.builtin.include_tasks: swap-disable.yml
+  tags:
+    - 'never'
+    - 'swap.disable'
+
+- name: Enable swap
+  ansible.builtin.include_tasks: swap-enable.yml
+  tags:
+    - 'swap.enable'

@@ -1,0 +1,16 @@
+---
+- name: Ensure the Supervisor service is running
+  ansible.builtin.service:
+    name: supervisor
+    state: started
+
+- name: Add supervisor config file
+  ansible.builtin.template:
+    src: supervisor_config.j2
+    dest: "/etc/supervisor/conf.d/{{ app_name }}_django.conf"
+    mode: "400"
+
+- name: Re-read the supervisor config file group, if changed
+  community.general.supervisorctl:
+    name: "{{ app_name }}_django"
+    state: present

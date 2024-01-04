@@ -1,0 +1,35 @@
+---
+# The name of the (software) environment
+env_name: production
+
+# The username/password for the account that connects to the database
+db_user: "{{ vault_db_user }}"
+db_password: "{{ vault_db_password }}"
+# The host for the database
+db_host: "localhost"
+# The name of the database
+db_name: "{{ app_name }}"
+
+# The username/password for the account that connects to message broker
+broker_user: "{{ vault_broker_user }}"
+broker_password: "{{ vault_broker_password }}"
+# The host for the message broker
+broker_host: "localhost"
+# The broker virtual host for the app
+broker_vhost: "{{ app_name }}"
+
+# Django debug mode
+django_debug: false
+# The unique key used in cryptographic signing
+django_secret_key: "{{ vault_django_secret_key }}"
+# The authentication token used to access the django-watchman status endpoint
+django_watchman_tokens: "{{ vault_django_watchman_tokens }}"
+
+# The list of users who will be granted access to the servers
+admins: "{{ vault_admins }}"
+
+# A cron-job is created to automatically renew the certificate
+certbot_enabled: true
+# Email used for registration and recovery contact.
+# Use a comma-separated list for multiple emails
+certbot_admin_email: "{{ vault_certbot_admin_email }}"

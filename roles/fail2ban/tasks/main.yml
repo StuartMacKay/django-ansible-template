@@ -1,0 +1,21 @@
+---
+- name: Install fail2ban for Debian systems
+  ansible.builtin.import_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - fail2ban
+    - fail2ban.install
+
+- name: Set up
+  ansible.builtin.import_tasks: setup-fail2ban.yml
+  tags:
+    - fail2ban
+    - fail2ban.install
+
+- name: Set the state of the service
+  ansible.builtin.service:
+    name: supervisor
+    state: "{{ fail2ban_state }}"
+  tags:
+    - fail2ban
+    - fail2ban.service

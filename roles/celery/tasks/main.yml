@@ -1,0 +1,14 @@
+---
+- name: Add celery to supervisor
+  ansible.builtin.import_tasks: setup-supervisor.yml
+  tags:
+    - celery
+    - deploy
+
+- name: Setup Celery
+  ansible.builtin.import_tasks: setup-celery.yml
+  tags:
+    - celery
+    - deploy
+  notify:
+    - "Restart celery"

@@ -1,0 +1,7 @@
+---
+- name: Create cron job to renew certificate
+  ansible.builtin.cron:
+    name: "daily auto-renew cert"
+    special_time: daily
+    job: '/usr/bin/certbot renew --standalone --no-self-upgrade --pre-hook "service nginx stop" --post-hook "service nginx start" --quiet'
+    state: present

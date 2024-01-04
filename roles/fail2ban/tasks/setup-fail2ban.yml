@@ -1,0 +1,8 @@
+---
+- name: Copy fail2ban custom configuration file into place.
+  ansible.builtin.template:
+    src: "jail.{{ env_name }}.j2"
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: "0644"

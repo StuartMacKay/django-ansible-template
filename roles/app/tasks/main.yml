@@ -1,0 +1,13 @@
+---
+- name: Checkout source
+  ansible.builtin.import_tasks: checkout-source.yml
+  tags:
+    - project
+    - project.source
+    - deploy
+
+- name: Create directories
+  ansible.builtin.import_tasks: setup-paths.yml
+  tags:
+    - project
+    - project.paths

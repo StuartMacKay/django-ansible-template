@@ -1,0 +1,10 @@
+---
+- name: Make sure rabbitmq-server is enabled and running
+  ansible.builtin.service:
+    name: rabbitmq-server
+    state: started
+
+- name: Delete the default 'guest' user
+  community.rabbitmq.rabbitmq_user:
+    user: guest
+    state: absent

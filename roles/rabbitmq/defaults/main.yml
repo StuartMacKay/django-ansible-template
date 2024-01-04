@@ -1,0 +1,28 @@
+---
+rabbitmq_signing_keys:
+  - 'https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key'
+  - 'https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-server.9F4587F226208342.key'
+
+# See, Installing on Debian and Ubuntu
+# https://www.rabbitmq.com/install-debian.html
+
+rabbitmq_deb_repositories:
+  - 'deb https://ppa1.novemberain.com/rabbitmq/rabbitmq-erlang/deb/ubuntu {{ ansible_distribution_release }} main'
+  - 'deb https://ppa2.novemberain.com/rabbitmq/rabbitmq-erlang/deb/ubuntu {{ ansible_distribution_release }} main'
+  - 'deb https://ppa1.novemberain.com/rabbitmq/rabbitmq-server/deb/ubuntu {{ ansible_distribution_release }} main'
+  - 'deb https://ppa2.novemberain.com/rabbitmq/rabbitmq-server/deb/ubuntu {{ ansible_distribution_release }} main'
+
+# Pin by adding the version numbers
+# but see, https://www.rabbitmq.com/which-erlang.html
+rabbitmq_deb_packages:
+  - 'erlang'
+  - 'rabbitmq-server'
+
+# Default port number
+rabbitmq_port: 5672
+
+# Does the service start at boot time
+rabbitmq_enabled: true
+
+# The service state when the tasks for the role are completed.
+rabbitmq_state: started

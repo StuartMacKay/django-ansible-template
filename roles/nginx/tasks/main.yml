@@ -1,0 +1,22 @@
+---
+- name: Install nginx for Debian systems
+  ansible.builtin.import_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - nginx
+    - nginx.install
+
+- name: Create SSL certificate - development ONLY
+  ansible.builtin.import_tasks: create-certificate.yml
+  when: app_domain_name is not defined
+  tags:
+    - nginx
+    - nginx.certificate
+
+- name: Set the state of the service
+  ansible.builtin.service:
+    name: nginx
+    state: "{{ nginx_state }}"
+  tags:
+    - nginx
+    - nginx.service

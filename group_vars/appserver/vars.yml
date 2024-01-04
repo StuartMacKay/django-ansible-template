@@ -1,0 +1,17 @@
+---
+# The name of the app
+app_name: "app"
+# The directory where the app will be installed
+app_root_dir: "/var/www/{{ app_name }}"
+
+# The URI to the repository containing the app source code.
+# You absolutely have to change this to the repository you created from the template.
+app_repository: "git@github.com:StuartMacKay/django-project-templates.git"
+# The branch or tag to checkout
+app_version: "master"
+
+# The username/password for the account created to own and run the app
+app_user: "{{ app_name }}"
+app_password: "{{ vault_app_password }}"
+# The group the app user belongs to
+app_group: "webapps"

@@ -1,0 +1,9 @@
+---
+# For the certbot role the following variables must be defined:
+# certbot_enabled
+# certbot_admin_email
+
+# Packages to install on Debian based distributions
+certbot_deb_packages:
+  - certbot
+  - python3-certbot-nginx

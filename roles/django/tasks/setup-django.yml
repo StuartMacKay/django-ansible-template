@@ -1,0 +1,26 @@
+---
+- name: Delete compiled python files
+  ansible.builtin.command: "find {{ app_backend_dir }} -type f -name \"*.py[co]\" -delete -o -type d -name __pycache__ -delete"
+  args:
+    chdir: "{{ item }}"
+  loop:
+    - "{{ app_virtualenv_dir }}"
+    - "{{ app_backend_dir }}"
+  changed_when: false
+
+- name: Run database migrations
+  community.general.django_manage:
+    command: migrate
+    app_path: "{{ app_backend_dir }}"
+    virtualenv: "{{ app_virtualenv_dir }}"
+    settings: "{{ django_settings_module }}"
+  environment: "{{ django_environment }}"
+
+- name: Run collectstatic
+  community.general.django_manage:
+    command: collectstatic
+    app_path: "{{ app_backend_dir }}"
+    virtualenv: "{{ app_virtualenv_dir }}"
+    settings: "{{ django_settings_module }}"
+    clear: true
+  environment: "{{ django_environment }}"

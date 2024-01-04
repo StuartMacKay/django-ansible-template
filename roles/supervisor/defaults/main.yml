@@ -1,0 +1,10 @@
+---
+# Packages for Debian based systems
+supervisor_deb_packages:
+  - supervisor
+
+# Does the service start at boot time
+supervisor_enabled: true
+
+# The service state when the tasks for the role are completed.
+supervisor_state: started

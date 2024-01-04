@@ -1,0 +1,18 @@
+---
+- name: Create the application user
+  ansible.builtin.user:
+    name: "{{ app_user }}"
+    shell: /bin/bash
+    state: present
+
+- name: Create the application group
+  ansible.builtin.group:
+    name: "{{ app_group }}"
+    system: true
+    state: present
+
+- name: Add the application user to the application group
+  ansible.builtin.user:
+    name: "{{ app_user }}"
+    group: "{{ app_group }}"
+    state: present

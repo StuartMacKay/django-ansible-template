@@ -1,0 +1,11 @@
+---
+# Packages for Debian based systems
+base_deb_packages:
+  # Apt will use https rather than http
+  - apt-transport-https
+  # For checking package signatures
+  - gnupg
+  # Checkout the project and the source for any requirements
+  - git
+  # Internationalisation and localisation
+  - locales

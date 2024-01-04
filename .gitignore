@@ -1,0 +1,11 @@
+.*
+
+!.ansible-lint
+!.envrc
+!.gitignore
+!.yamllint
+
+*.retry
+
+# Inventory file used to test deployments to a local virtual machine
+development

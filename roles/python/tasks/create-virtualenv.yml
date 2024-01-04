@@ -1,0 +1,14 @@
+---
+- name: Add python repository
+  ansible.builtin.apt_repository:
+    repo: "{{ python_repository }}"
+    state: present
+
+- name: Install base python packages
+  ansible.builtin.apt:
+    name: "{{ python_packages }}"
+
+- name: Create the virtualenv
+  ansible.builtin.command:
+    cmd: "python{{ python_version }} -m venv {{ python_virtualenv_dir }}"
+    creates: "{{ python_virtualenv_dir }}/bin/activate"

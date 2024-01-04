@@ -1,0 +1,22 @@
+---
+# Make the virtualenv is created after the repository has been checked out
+# and not before, otherwise git will fail with a "directory not empty" error
+# the first time the take is run.
+- name: Ensure the source has been checked out
+  ansible.builtin.stat:
+    path: "{{ app_root_dir }}/.git"
+  register: file_info
+  failed_when: not file_info.stat.exists
+
+- name: Create virtualenv
+  ansible.builtin.import_tasks: create-virtualenv.yml
+  tags:
+    - python
+    - python.venv
+
+- name: Install requirements
+  ansible.builtin.import_tasks: install-requirements.yml
+  tags:
+    - python
+    - python.requirements
+    - deploy

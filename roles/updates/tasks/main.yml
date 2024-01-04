@@ -1,0 +1,12 @@
+---
+- name: Install unattended upgrades for Debian systems
+  ansible.builtin.import_tasks: install-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - updates
+
+- name: Set up unattended upgrades for Debian systems
+  ansible.builtin.import_tasks: setup-debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - updates
