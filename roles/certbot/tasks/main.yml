@@ -1,21 +1,21 @@
 ---
 - name: Install certbot for Debian systems
   ansible.builtin.import_tasks: install-debian.yml
-  when: app_domain_name is defined and ansible_os_family == 'Debian'
+  when: certbot_enabled and ansible_os_family == 'Debian'
   tags:
     - certbot
     - certbot.install
 
 - name: Generate certificate
   ansible.builtin.import_tasks: create-certificate.yml
-  when: app_domain_name is defined
+  when: certbot_enabled
   tags:
     - certbot
     - certbot.certificate
 
 - name: Create auto-renew cron job
   ansible.builtin.import_tasks: setup-auto-renew.yml
-  when: app_domain_name is defined
+  when: certbot_enabled
   tags:
     - certbot
     - certbot.auto-renew
