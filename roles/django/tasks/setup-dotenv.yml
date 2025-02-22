@@ -5,4 +5,4 @@
     dest: "{{ app_root_dir }}/.env"
     owner: "{{ app_user }}"
     group: "{{ app_group }}"
-    mode: "440"
+    mode: "400"

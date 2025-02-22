@@ -4,6 +4,7 @@ command={{ app_virtualenv_dir }}/bin/gunicorn -c {{ gunicorn_configuration_file 
 user={{ app_user }}
 directory={{ app_root_dir }}
 environment=
+  USER="{{ app_user }}",
 {%- for variable_name, value in gunicorn_environment.items() %}
   {{ variable_name }}="{{ value }}"{% if not loop.last %},{% endif %}
 {%- endfor %}

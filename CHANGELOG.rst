@@ -4,6 +4,9 @@ Changelog
 
 0.0.2 (2025-02-22)
 ------------------
+* Set the USER variable in the gunicorn process environment, otherwise it cannot
+  read the .env file.
+
 * Update README to handle different Django project layouts.
 
 * Update README to describe how the variables are organised.
