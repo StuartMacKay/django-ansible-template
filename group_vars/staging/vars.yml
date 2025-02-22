@@ -1,0 +1,27 @@
+---
+# The password for app owner.
+app_password: "{{ vault_app_password }}"
+
+# The list of users who will be granted access to the servers
+admins: "{{ vault_admins }}"
+
+# Use a self-signed certificate
+certbot_enabled: false
+
+# Don't use fail2ban
+fail2ban_enabled: false
+
+# The username/password for the account that connects to the database
+postgresql_user: "{{ vault_postgresql_user }}"
+postgresql_password: "{{ vault_postgresql_password }}"
+# The name of the database
+postgresql_database: "{{ app_name }}"
+
+# The username/password for the account that connects to message broker
+rabbitmq_user: "{{ vault_rabbitmq_user }}"
+rabbitmq_password: "{{ vault_rabbitmq_password }}"
+# The broker virtual host for the app
+rabbitmq_vhost: "{{ app_name }}"
+
+# The unique key used in cryptographic signing
+django_secret_key: "{{ vault_django_secret_key }}"

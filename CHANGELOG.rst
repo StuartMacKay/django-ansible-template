@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Renamed 'development' group_vars to 'staging'.
+
 * Delete the app_front_dir variable, it is specific to the project layout.
 
 * Delete the app_backend_dir variable, it is specific to the project layout.

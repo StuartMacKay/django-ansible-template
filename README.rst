@@ -2,7 +2,7 @@
 Ansible Virtualenv
 ==================
 This template contains an ansible playbook for deploying a Django-based
-app server to either a development or production environment running on
+app server to either a staging or production environment running on
 a Virtual Private Server or a Dedicated Server. The project uses a virtualenv
 for running Django and Celery so the application is completely isolated
 from the system python.
@@ -23,7 +23,7 @@ Project Layout
     ├── group_vars
     │   ├─── appserver
     │   │    └── vars.yml
-    │   ├─── development
+    │   ├─── staging
     │   │    ├── vars.yml
     │   │    └── vault.yml
     │   └─── production
@@ -47,7 +47,7 @@ Project Layout
     └── requirements.txt
 
 ``group_vars`` contains the variable definitions for deploying appservers to
-development and production environments. Each environment has the sensitive
+staging and production environments. Each environment has the sensitive
 variables stored in a vault. The password for each vault is 'password'. You
 MUST at least change the password for production.
 
@@ -79,9 +79,9 @@ will be expanded for RedHat (Centos) based systems shortly.
 
 ``playbook.yml`` simply runs through all the roles to install everything
 needed for the app server. It is opinionated. It assumes there are two
-environment, development and production, which can be deployed. For local
-development this is probably sufficient. For production systems this is
-really only a starting point. Any medium or large-scale system will be
+environments, staging and production, which can be deployed. For local
+development this is probably sufficient. For large production systems this
+is really only a starting point. Any medium or large-scale system will be
 deployed across multiple servers, with load balancing, database failover,
 etc.
 
@@ -92,8 +92,8 @@ from a virtual environment. There is also an direnv configuration file,
 
 Security
 --------
-Both the development and production group variables are stored in vaults.
-The password for each is 'password'. Keep the same password for development
+Both the staging and production group variables are stored in vaults.
+The password for each is 'password'. Keep the same password for staging
 but you MUST change the password for production. Also make sure you change
 the secret key for Django. The same value is used in both and besides they
 are public knowledge.
@@ -102,7 +102,7 @@ In addition to the vaults for storing all sensitive information, ansible is
 configured so you never stored passwords, unprotected in files. The config
 file, ``ansible.cfg`` sets ``ask_vault_pass`` and ``become_ask_pass`` so you
 will always be prompted when doing a deployment. This is done even for
-development, so healthy habits are reinforced.
+staging, so healthy habits are reinforced.
 
 Getting Started
 ---------------
@@ -130,7 +130,7 @@ Create an inventory from the example in the ``deploy`` directory:
 
 .. code-block:: shell
 
-   cp inventory.example development
+   cp inventory.example staging
 
 Next edit the inventory to see the IP address of a local virtual machine:
 
@@ -139,7 +139,7 @@ Next edit the inventory to see the IP address of a local virtual machine:
     [appserver]
     192.168.10.22
 
-    [development]
+    [staging]
     192.168.10.22
 
 The ``app_domain_name`` only needs to be defined for production deployments.
@@ -162,7 +162,7 @@ the machine:
 
 ..  code-block:: shell
 
-    ansible-playbook -i development playbook.yml -u root --ask-pass
+    ansible-playbook -i staging playbook.yml -u root --ask-pass
 
 2. authenticate with ssh key (root)
 
@@ -172,7 +172,7 @@ the machine:
 
 ..  code-block:: shell
 
-    ansible-playbook -i development playbook.yml -u root
+    ansible-playbook -i staging playbook.yml -u root
 
 3. authenticate with username / password
 
@@ -180,7 +180,7 @@ the machine:
 
 ..  code-block:: shell
 
-    ansible-playbook -i development playbook.yml -u <username> --ask-pass
+    ansible-playbook -i staging playbook.yml -u <username> --ask-pass
 
     The ansible configuration file, ``ansible.cfg`` has the ``become_ask_pass``
     option set to ``true`` so you will be prompted to enter the password in order
@@ -188,14 +188,14 @@ the machine:
 
 The initial deployment locks down access to the server. You can only login using
 an authorized key; root login is disabled; logins can only be by admins (listed
-in the development or production group_vars files) and a password is required for
+in the staging or production group_vars files) and a password is required for
 sudo access.
 
 Subsequent deployments are now run using:
 
 ..  code-block:: shell
 
-    ansible-playbook -i development playbook.yml
+    ansible-playbook -i staging playbook.yml
 
 assuming the your username on the ansible control node (i.e. the local machine)
 matches one of the admin accounts added to the server. Otherwise you will have
@@ -206,14 +206,14 @@ run a local virtual machine you can use this to verify each role is working:
 
 ..  code-block:: shell
 
-    ansible-playbook -i development playbook.yml --tags="memcached"
+    ansible-playbook -i staging playbook.yml --tags="memcached"
 
 The roles often have tags for each group of tasks so you can test each
 step separately:
 
 ..  code-block:: shell
 
-    ansible-playbook -i development playbook.yml --tags="memcached.install"
+    ansible-playbook -i staging playbook.yml --tags="memcached.install"
 
 Testing
 -------
