@@ -13,6 +13,18 @@
     - nginx
     - nginx.certificate
 
+- name: Disable default site
+  ansible.builtin.import_tasks: disable-default-site.yml
+  tags:
+    - nginx
+    - nginx.setup
+
+- name: Add site for app
+  ansible.builtin.import_tasks: add-site.yml
+  tags:
+    - nginx
+    - nginx.setup
+
 - name: Set the state of the service
   ansible.builtin.service:
     name: nginx

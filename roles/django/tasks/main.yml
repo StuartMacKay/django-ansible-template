@@ -6,12 +6,6 @@
     - django.setup
     - deploy
 
-- name: Create nginx site
-  ansible.builtin.import_tasks: setup-nginx.yml
-  tags:
-    - django
-    - django.nginx
-
 - name: Generate dotenv
   ansible.builtin.import_tasks: setup-dotenv.yml
   tags:

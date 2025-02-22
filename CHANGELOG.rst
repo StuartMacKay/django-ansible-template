@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Decouple tasks for configuring nginx from the Django role.
+
 * Deleted the django_debug variable, it is specific to an app.
 
 * Deleted the env_name variable, it is specific to an app.
