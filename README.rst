@@ -9,7 +9,7 @@ from the system python.
 
 This template is intended to be used with Django sites created using the
 `django-project-template`_. It should be easily changed to suit any Django
-project. Only the environment variable used to configure Django should
+project. Only the environment variables used to configure Django should
 need changing.
 
 .. _django-project-template: https://github.com/StuartMacKay/django-project-template
@@ -75,7 +75,9 @@ probably more yaml than is healthy but you will find that things are easy
 to find and it's easy to throw away the stuff you don't want. There are
 separate tasks for each operating system, for example, when installing
 native packages. Currently only Debian based systems are supported. This
-will be expanded for RedHat (Centos) based systems shortly.
+will be expanded for RedHat (Centos) based systems shortly. The variables
+for role define sensible defaults for each task. You can override these
+as needed, in the group_vars.
 
 ``playbook.yml`` simply runs through all the roles to install everything
 needed for the app server. It is opinionated. It assumes there are two
@@ -149,7 +151,7 @@ do a deployment immediately.
 Deployments
 -----------
 When a Virtual Machine or Virtual Private Server (VPS) is created there are
-three scenarioes which determine how the machine is can be accessed:
+three scenarios which determine how the machine is can be accessed:
 
 #. authenticate with username / password (root)
 #. authenticate with ssh key (root)
@@ -257,6 +259,6 @@ check out code from a private repository.
 Acknowledgements
 ----------------
 This playbook is based on the extremely useful `ansible-django-stack`_
-which has been used extensively across many personal project.
+which has been used extensively across many personal projects.
 
 .. _ansible-django-stack: https://github.com/jcalazan/ansible-django-stack

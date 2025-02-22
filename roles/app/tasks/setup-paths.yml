@@ -22,7 +22,7 @@
     mode: '0705'
     state: directory
 
-# The directory nfor media files (uploads) eeds to be writable by the app
+# The directory for media files (uploads) needs to be writable by the app
 # user when file are uploaded and readable by the web server. That's all.
 - name: Create the media directory
   ansible.builtin.file:
