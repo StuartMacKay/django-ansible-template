@@ -1,0 +1,8 @@
+---
+- name: Add dotenv file
+  ansible.builtin.template:
+    src: dotenv.j2
+    dest: "{{ app_root_dir }}/.env"
+    owner: "{{ app_user }}"
+    group: "{{ app_group }}"
+    mode: "440"

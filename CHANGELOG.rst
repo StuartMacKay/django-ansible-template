@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Add a dotenv file for configuring Django settings.
+
 * Separate configuring gunicorn into a role.
 
 * Reorganised RabbitMQ variables and tasks to decouple it from the Django role.

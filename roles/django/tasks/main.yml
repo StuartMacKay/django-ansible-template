@@ -12,6 +12,13 @@
     - django
     - django.nginx
 
+- name: Generate dotenv
+  ansible.builtin.import_tasks: setup-dotenv.yml
+  tags:
+    - django
+    - django.setup
+    - deploy
+
 - name: Run database migrations
   ansible.builtin.import_tasks: run-migrations.yml
   tags:
