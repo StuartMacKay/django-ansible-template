@@ -4,8 +4,9 @@
     name: "{{ nginx_deb_packages }}"
 
 - name: Set up parameters for Diffie-Hellman Key Exchange
-  ansible.builtin.command: openssl dhparam -out /etc/ssl/certs/dhparams.pem 2048 creates=/etc/ssl/certs/dhparams.pem
-  when: nginx_diffie_hellman_enable is defined and nginx_diffie_hellman_enable
+  ansible.builtin.command:
+    cmd: openssl dhparam -out /etc/ssl/certs/dhparams.pem 4096
+    creates: /etc/ssl/certs/dhparams.pem
 
 - name: Enable/disable the service at boot
   ansible.builtin.service:

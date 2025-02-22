@@ -14,8 +14,3 @@
       -newkey rsa:4096 -sha256 -keyout /etc/pki/tls/private/server.key -out /etc/pki/tls/private/server.crt
     creates: "/etc/pki/tls/private/server.crt"
   when: ansible_os_family == 'RedHat'
-
-- name: Generate Diffie-Hellman Group
-  ansible.builtin.command:
-    cmd: openssl dhparam -out /etc/nginx/dhparams.pem 4096
-    creates: "/etc/nginx/dhparams.pem"
