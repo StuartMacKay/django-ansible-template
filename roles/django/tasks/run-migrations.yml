@@ -1,0 +1,8 @@
+---
+- name: Run database migrations
+  community.general.django_manage:
+    command: migrate
+    app_path: "{{ app_root_dir }}"
+    virtualenv: "{{ app_virtualenv_dir }}"
+    settings: "{{ django_settings_module }}"
+  environment: "{{ django_environment }}"

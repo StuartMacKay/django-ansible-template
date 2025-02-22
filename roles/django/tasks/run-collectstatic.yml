@@ -1,0 +1,9 @@
+---
+- name: Run collectstatic
+  community.general.django_manage:
+    command: collectstatic
+    app_path: "{{ app_root_dir }}"
+    virtualenv: "{{ app_virtualenv_dir }}"
+    settings: "{{ django_settings_module }}"
+    clear: true
+  environment: "{{ django_environment }}"

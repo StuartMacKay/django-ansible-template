@@ -12,11 +12,16 @@
     - django
     - django.nginx
 
-- name: Setup Django
-  ansible.builtin.import_tasks: setup-django.yml
+- name: Run database migrations
+  ansible.builtin.import_tasks: run-migrations.yml
   tags:
     - django
     - django.setup
     - deploy
-  notify:
-    - "Restart django"
+
+- name: Run collectstatic
+  ansible.builtin.import_tasks: run-collectstatic.yml
+  tags:
+    - django
+    - django.setup
+    - deploy
