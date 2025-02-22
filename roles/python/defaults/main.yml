@@ -1,14 +1,13 @@
 ---
 # The version of python to use to run the app
-python_version: 3.11
+python_version: 3.12
 
 # The repository used to install python versions
 python_repository: "ppa:deadsnakes/ppa"
 
-# The base set of packages needed to create the vritualenv
+# The base set of packages needed to create the virtual environment
 python_packages:
   - 'python{{ python_version }}-dev'
-  - 'python{{ python_version }}-distutils'
   - 'python{{ python_version }}-venv'
 
 # The name of the virtualenv directory

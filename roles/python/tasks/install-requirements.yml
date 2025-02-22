@@ -1,4 +1,9 @@
 ---
+- name: Install setuptools
+  ansible.builtin.pip:
+    virtualenv: "{{ python_virtualenv_dir }}"
+    name: "setuptools"
+
 - name: Install requirements
   ansible.builtin.pip:
     virtualenv: "{{ python_virtualenv_dir }}"

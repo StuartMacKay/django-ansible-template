@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Upgrade to python 3.12 for the virtualenv.
+
 * Reorganise handlers for restarting services.
 
 * Decouple tasks for configuring nginx from the Django role.
