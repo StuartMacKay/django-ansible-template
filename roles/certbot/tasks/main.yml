@@ -19,3 +19,5 @@
   tags:
     - certbot
     - certbot.auto-renew
+  notify:
+    - "Restart nginx"
