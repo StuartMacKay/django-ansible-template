@@ -2,8 +2,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.2 (2025-02-22)
+------------------
 * Update README to handle different Django project layouts.
 
 * Update README to describe how the variables are organised.
