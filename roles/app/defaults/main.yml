@@ -1,4 +1,11 @@
 ---
+# Variables defining the layout of the app. Override these as necessary
+# to match the layout of your project.
+
+# The name of the app. Set this in group_vars/appserver/vars.yml.
+app_name: !!null
+# The absolute path where the app will be installed
+app_root_dir: "/var/www/{{ app_name }}"
 # The absolute path to the directory for the virtualenv
 app_virtualenv_dir: "{{ app_root_dir }}/.venv"
 # The absolute path to the directory where uploaded files will be stored
@@ -15,7 +22,34 @@ app_run_dir: "/var/run/{{ app_name }}"
 # The absolute path to the directory used for temporary files, see tasks/checkout-source.yml
 app_tmp_dir: "/var/tmp"
 
+# The username for the account created to own and run the app
+app_user: "{{ app_name }}"
+# The password for app owner. Set this in group_vars. For example see,
+# group_vars/production/vars.yml where is it set from a value stored
+# in the vault.
+app_password: !!null
+# The group the app owner belongs to.
+app_group: "webapps"
+
 # The group that nginx belongs to
 app_webserver_group: "www-data"
 # The group that the admin users belong to
 app_admin_group: "adm"
+
+# The URI to the repository containing the app source code. Set this
+# in group_vars/appserver/vars.yml
+app_repository: !!null
+# The branch or tag to checkout
+app_repository_branch: "master"
+
+# This is a list of environment variables which are used to configure
+# Django settings, specific to your application. Set this list in
+# group_vars/appserver/vars.yml.
+#
+# IMPORTANT: This is separate from the list in the django_environment
+# variable found in roles/django/defaults/main.yml, which define the
+# settings for basic services, the database connection url, Django's
+# secret key, etc. Both lists are written to the dotenv file which is
+# then loaded into your application using packages such as python-dotenv
+# or django-environ.
+app_environment: !!null

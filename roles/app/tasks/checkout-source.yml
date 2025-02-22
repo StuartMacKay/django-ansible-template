@@ -17,7 +17,7 @@
 - name: Setup the Git repo
   ansible.builtin.git:
     repo: "{{ app_repository }}"
-    version: "{{ app_version }}"
+    version: "{{ app_repository_branch }}"
     single_branch: true
     dest: "{{ app_root_dir }}"
     accept_hostkey: true

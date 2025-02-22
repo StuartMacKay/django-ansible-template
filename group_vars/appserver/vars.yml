@@ -1,17 +1,16 @@
 ---
+# IMPORTANT: You must set the following variables: app_name, app_repository,
+# and app_environment.
+
 # The name of the app
-app_name: "app"
-# The directory where the app will be installed
-app_root_dir: "/var/www/{{ app_name }}"
+app_name: !!null
 
 # The URI to the repository containing the app source code.
-# You absolutely have to change this to the repository you created from the template.
-app_repository: "git@github.com:StuartMacKay/django-project-templates.git"
-# The branch or tag to checkout
-app_version: "master"
+app_repository: !!null
 
-# The username/password for the account created to own and run the app
-app_user: "{{ app_name }}"
-app_password: "{{ vault_app_password }}"
-# The group the app user belongs to
-app_group: "webapps"
+# Add any additional environment variables for Django here.
+app_environment: !!null
+
+# Add any other variables you wish to override here, particularly
+# the layout of your Django app, if it differs from the default
+# layout assumed in roles/app/defaults/main.yml

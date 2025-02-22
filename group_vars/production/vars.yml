@@ -1,4 +1,7 @@
 ---
+# The password for app owner.
+app_password: "{{ vault_app_password }}"
+
 # The unique key used in cryptographic signing
 django_secret_key: "{{ vault_django_secret_key }}"
 
