@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Delete the app_backend_dir variable, it is specific to the project layout.
+
 * Upgrade to python 3.12 for the virtualenv.
 
 * Reorganise handlers for restarting services.

@@ -14,7 +14,7 @@ python_packages:
 python_virtualenv_name: ".venv"
 
 # The absolute path to where the virtualenv will be created
-python_virtualenv_dir: "{{ app_backend_dir }}/{{ python_virtualenv_name }}"
+python_virtualenv_dir: "{{ app_root_dir }}/{{ python_virtualenv_name }}"
 
 # The dependencies required to run the app
-python_requirements_file: "{{ app_backend_dir }}/requirements/{{ env_name }}.txt"
+python_requirements_file: "{{ app_root_dir }}/requirements.txt"
