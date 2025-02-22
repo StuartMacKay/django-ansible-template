@@ -1,8 +1,6 @@
 ---
 # The unique key used in cryptographic signing
 django_secret_key: "{{ vault_django_secret_key }}"
-# The authentication token used to access the django-watchman status endpoint
-django_watchman_tokens: "{{ vault_django_watchman_tokens }}"
 
 # The list of users who will be granted access to the servers
 admins: "{{ vault_admins }}"

@@ -13,4 +13,3 @@ django_environment:
   DJANGO_MEDIA_ROOT: "{{ app_media_dir }}"
   DJANGO_SECRET_KEY: "{{ django_secret_key }}"
   DJANGO_STATIC_ROOT: "{{ app_static_dir }}"
-  DJANGO_WATCHMAN_TOKENS: "{{ django_watchman_tokens }}"

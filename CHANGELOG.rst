@@ -16,6 +16,8 @@ Unreleased
 
 * Decouple tasks for configuring nginx from the Django role.
 
+* Delete the django_watchman_tokens variable, it is specific to an app.
+
 * Deleted the django_debug variable, it is specific to an app.
 
 * Deleted the env_name variable, it is specific to an app.
