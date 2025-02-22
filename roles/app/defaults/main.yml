@@ -1,8 +1,6 @@
 ---
 # The absolute path to the directory for the virtualenv
 app_virtualenv_dir: "{{ app_root_dir }}/.venv"
-# The absolute path to the directory containing the frontend code (e.g. React)
-app_frontend_dir: "{{ app_root_dir }}/frontend"
 # The absolute path to the directory where uploaded files will be stored
 app_media_dir: "{{ app_root_dir }}/media"
 # The absolute path to the directory where static files will be collected and served from
