@@ -9,8 +9,8 @@
 # The two situations overlap and introducing a new variable was the simplest and
 # most unambiguous solution. See,
 # molecule/default/molecule.yml, line 25
-# roles/django/defaults/main.yml, line 19
-# roles/django/templates/nginx_config.js, lines 14, 27, 29, 46/
+# roles/django/defaults/main.yml, line 20
+# roles/nginx/templates/nginx_config.js, lines 11, 17, 27, 30, 31 & 49
 
 [appserver]
 www.example.com
