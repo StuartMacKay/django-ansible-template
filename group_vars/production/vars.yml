@@ -1,7 +1,4 @@
 ---
-# The name of the (software) environment
-env_name: production
-
 # Django debug mode
 django_debug: false
 # The unique key used in cryptographic signing

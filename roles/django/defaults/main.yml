@@ -11,7 +11,6 @@ django_environment:
   DATABASE_URL: "{{ postgres_uri }}"
   DJANGO_ALLOWED_HOSTS: "{{ django_allowed_hosts }}"
   DJANGO_DEBUG: "{{ django_debug }}"
-  DJANGO_ENV: "{{ env_name }}"
   DJANGO_MEDIA_ROOT: "{{ app_media_dir }}"
   DJANGO_SECRET_KEY: "{{ django_secret_key }}"
   DJANGO_STATIC_ROOT: "{{ app_static_dir }}"
