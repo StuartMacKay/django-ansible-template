@@ -17,6 +17,7 @@ www.example.com
 
 [appserver:vars]
 app_domain_name=www.example.com
+postgresql_host=localhost
 
 [production]
 www.example.com
