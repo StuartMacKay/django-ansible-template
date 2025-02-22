@@ -32,3 +32,8 @@
     - django
     - django.setup
     - deploy
+
+- name: Notify memcached
+  meta: noop
+  notify:
+    - "Restart memcached"

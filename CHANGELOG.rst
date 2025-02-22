@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Add task to memcached after the Django app is deployed.
+
 * Add a dotenv file for configuring Django settings.
 
 * Separate configuring gunicorn into a role.
