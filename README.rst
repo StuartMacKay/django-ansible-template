@@ -115,6 +115,45 @@ well-organised, easy to work with, easy to manage, model.
 A number of variables, e.g. ``app_repository`` are set to ``!!null`. You need
 to set these (obviously) according to your application's needs.
 
+Django Layout
+-------------
+::
+
+    <project>
+       ├── .env
+       ├── .venv/
+       ├── manage.py
+       ├── requirements.txt
+       ├── <project>
+       │   ├─── gunicorn.py
+       │   ├─── settings.py
+       │   └─── wsgi.py
+       ├── media/
+       ├── static/
+       ...
+
+The playbook tasks assume the typical layout for a Django project. <project>
+is the name of your site, and the root directory of the checked out repository.
+The config files: settings.py etc are in a sub-folder with the same name. The
+virtual environment for the application is in the .venv folder. A dotenv file
+is used to set the environment variables for django or celery.
+
+If you're project is different, for example, if you follow the Two Scoops layout,
+you can set the following variables:
+
+.. code-block:: yaml
+
+    # The dependencies required to run the app
+    python_requirements_file: "{{ app_root_dir }}/requirements.txt"
+
+    # The wsgi settings module
+    gunicorn_settings_module: "config.wsgi"
+    # The configuration file for gunicorn
+    gunicorn_configuration_file: "{{ app_root_dir }}/config/gunicorn.py"
+
+    # The django settings module
+    django_settings_module: "config.settings"
+
 Security
 --------
 Both the staging and production group variables are stored in vaults.

@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Update README to handle different Django project layouts.
+
 * Update README to describe how the variables are organised.
 
 * Renamed 'development' group_vars to 'staging'.
