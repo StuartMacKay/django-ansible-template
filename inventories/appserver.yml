@@ -9,6 +9,8 @@ appserver:
   vars:
     # The fully-qualified domain name for the app
     app_domain_name: www.example.com
+    # The hostname to use in the database connection string
+    postgresql_host: localhost
 
 production:
   hosts:

@@ -12,14 +12,31 @@ postgresql_deb_packages:
   - 'postgresql-contrib'
   - 'python3-psycopg2'
 
-# Default port number
-postgresql_port: 5432
-
-# Default locale
-postgresql_locale: en_US.UTF-8
-
 # Does the service start at boot time
 postgresql_enabled: true
 
 # The service state when the tasks for the role are completed.
 postgresql_state: started
+
+# The host for the database.
+# Set this variable in you inventory so you can deploy the application
+# on more than one server.
+postgresql_host: !!null
+
+# Database server port number
+postgresql_port: 5432
+
+# The name for the database.
+postgresql_database: !!null
+
+# The host locale
+postgresql_locale: en_US.UTF-8
+
+# The username of the database owner.
+postgresql_user: !!null
+
+# The username of the database owner.
+postgresql_password: !!null
+
+# The URI for connecting to the PostgreSQL database server
+postgres_uri: "postgres://{{ postgresql_user }}:{{ postgresql_password }}@{{ postgresql_host }}:{{ postgresql_port }}/{{ postgresql_database }}"

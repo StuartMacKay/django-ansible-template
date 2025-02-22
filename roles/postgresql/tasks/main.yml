@@ -6,6 +6,18 @@
     - postgres
     - postgres.install
 
+- name: Create role for app
+  ansible.builtin.import_tasks: create-role.yml
+  tags:
+    - postgres
+    - postgres.setup
+
+- name: Create database for app
+  ansible.builtin.import_tasks: create-database.yml
+  tags:
+    - postgres
+    - postgres.setup
+
 - name: Set the state of the service
   ansible.builtin.service:
     name: postgresql

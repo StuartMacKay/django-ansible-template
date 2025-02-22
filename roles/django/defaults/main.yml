@@ -11,10 +11,6 @@ db_name: "{{ app_name }}"  # noqa: var-naming[no-role-prefix]
 
 # The URI for connecting to the RabbitMQ message broker
 django_broker_uri: "amqp://{{ broker_user }}:{{ broker_password }}@{{ broker_host }}:{{ rabbitmq_port }}/{{ broker_vhost }}"
-
-# The URI for connecting to the PostgreSQL database server
-django_database_uri: "postgres://{{ db_user }}:{{ db_password }}@{{ db_host }}:{{ postgresql_port }}/{{ db_name }}"
-
 # The hosts allowed to connect to the server
 django_allowed_hosts: "{{ app_domain_name | default(inventory_hostname) }}"
 
@@ -24,7 +20,7 @@ gunicorn_bind: "unix:{{ app_run_dir }}/gunicorn.sock"  # noqa: var-naming[no-rol
 # The set of environment variables needed to configure Django
 django_environment:
   BROKER_URL: "{{ django_broker_uri }}"
-  DATABASE_URL: "{{ django_database_uri }}"
+  DATABASE_URL: "{{ postgres_uri }}"
   DJANGO_ALLOWED_HOSTS: "{{ django_allowed_hosts }}"
   DJANGO_DEBUG: "{{ django_debug }}"
   DJANGO_ENV: "{{ env_name }}"

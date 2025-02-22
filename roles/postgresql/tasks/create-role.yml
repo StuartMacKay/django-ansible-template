@@ -1,0 +1,27 @@
+---
+- name: Ensure postgresql is running
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+
+- name: Is postgresql_user set
+  ansible.builtin.assert:
+    that:
+      - postgresql_user != None
+    fail_msg: "Set the postgresql_user variable"
+
+- name: Is postgresql_password set
+  ansible.builtin.assert:
+    that:
+      - postgresql_password != None
+    fail_msg: "Set the postgresql_password variable"
+
+- name: Create role
+  become: true
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    db: postgres
+    name: "{{ postgresql_user }}"
+    password: "{{ postgresql_password }}"
+    encrypted: true
+    state: present

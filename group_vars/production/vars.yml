@@ -2,14 +2,6 @@
 # The name of the (software) environment
 env_name: production
 
-# The username/password for the account that connects to the database
-db_user: "{{ vault_db_user }}"
-db_password: "{{ vault_db_password }}"
-# The host for the database
-db_host: "localhost"
-# The name of the database
-db_name: "{{ app_name }}"
-
 # The username/password for the account that connects to message broker
 broker_user: "{{ vault_broker_user }}"
 broker_password: "{{ vault_broker_password }}"
@@ -36,3 +28,9 @@ certbot_admin_email: "{{ vault_certbot_admin_email }}"
 
 # Use fail2ban
 fail2ban_enabled: true
+
+# The username/password for the account that connects to the postgreSQL database
+postgresql_user: "{{ vault_postgresql_user }}"
+postgresql_password: "{{ vault_postgresql_password }}"
+# The name of the database
+postgresql_database: "{{ app_name }}"

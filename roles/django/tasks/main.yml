@@ -1,9 +1,10 @@
 ---
-- name: Create database
-  ansible.builtin.import_tasks: setup-postgresql.yml
+- name: Delete compiled python files in app
+  ansible.builtin.import_tasks: delete-compiled-files.yml
   tags:
     - django
-    - django.postgresql
+    - django.setup
+    - deploy
 
 - name: Create rabbitmq vhost
   ansible.builtin.import_tasks: setup-rabbitmq.yml
