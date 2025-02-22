@@ -2,15 +2,6 @@
 # The path to the settings module
 django_settings_module: "project.settings"
 
-# Default name for the RabbitMQ vhost.
-# Set this to an empty string to use the default vhost provided by RabbitMQ
-broker_vhost: "{{ app_name }}"  # noqa: var-naming[no-role-prefix]
-
-# Default name for the database
-db_name: "{{ app_name }}"  # noqa: var-naming[no-role-prefix]
-
-# The URI for connecting to the RabbitMQ message broker
-django_broker_uri: "amqp://{{ broker_user }}:{{ broker_password }}@{{ broker_host }}:{{ rabbitmq_port }}/{{ broker_vhost }}"
 # The hosts allowed to connect to the server
 django_allowed_hosts: "{{ app_domain_name | default(inventory_hostname) }}"
 
@@ -19,7 +10,7 @@ gunicorn_bind: "unix:{{ app_run_dir }}/gunicorn.sock"  # noqa: var-naming[no-rol
 
 # The set of environment variables needed to configure Django
 django_environment:
-  BROKER_URL: "{{ django_broker_uri }}"
+  BROKER_URL: "{{ rabbitmq_uri }}"
   DATABASE_URL: "{{ postgres_uri }}"
   DJANGO_ALLOWED_HOSTS: "{{ django_allowed_hosts }}"
   DJANGO_DEBUG: "{{ django_debug }}"

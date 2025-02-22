@@ -6,12 +6,6 @@
     - django.setup
     - deploy
 
-- name: Create rabbitmq vhost
-  ansible.builtin.import_tasks: setup-rabbitmq.yml
-  tags:
-    - django
-    - django.rabbitmq
-
 - name: Add programs to supervisor
   ansible.builtin.import_tasks: setup-supervisor.yml
   tags:

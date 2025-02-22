@@ -18,11 +18,28 @@ rabbitmq_deb_packages:
   - 'erlang'
   - 'rabbitmq-server'
 
-# Default port number
-rabbitmq_port: 5672
-
 # Does the service start at boot time
 rabbitmq_enabled: true
 
 # The service state when the tasks for the role are completed.
 rabbitmq_state: started
+
+# The host for the rabbitmq server.
+# Set this variable in you inventory so you can deploy the application
+# on more than one server.
+rabbitmq_host: !!null
+
+# Default port number
+rabbitmq_port: 5672
+
+# Default name for the RabbitMQ vhost.
+rabbitmq_vhost: !!null
+
+# The username for the rabbitmq account.
+rabbitmq_user: !!null
+
+# The password of the rabbitmq account.
+rabbitmq_password: !!null
+
+# The URI for connecting to the RabbitMQ message broker
+rabbitmq_uri: "amqp://{{ rabbitmq_user }}:{{ rabbitmq_password }}@{{ rabbitmq_host }}:{{ rabbitmq_port }}/{{ rabbitmq_vhost }}"

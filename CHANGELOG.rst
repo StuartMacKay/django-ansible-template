@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Reorganised RabbitMQ variables and tasks to decouple it from the Django role.
+
 * Reorganised postgreSQL variables and tasks to decouple it from the Django role.
 
 * Replace the fail2ban configuration files, based on server groups, with a

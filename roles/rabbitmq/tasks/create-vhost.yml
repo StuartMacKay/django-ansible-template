@@ -1,0 +1,17 @@
+---
+- name: Make sure rabbitmq-server is enabled and running
+  ansible.builtin.service:
+    name: rabbitmq-server
+    state: started
+
+- name: Is rabbitmq_vhost set
+  ansible.builtin.assert:
+    that:
+      - rabbitmq_vhost != None
+    fail_msg: "Set the rabbitmq_vhost variable"
+
+- name: Create rabbitmq vhost
+  community.rabbitmq.rabbitmq_vhost:
+    name: "{{ rabbitmq_vhost }}"
+    state: present
+  when: false

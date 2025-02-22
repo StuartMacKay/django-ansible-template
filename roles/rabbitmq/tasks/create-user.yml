@@ -1,0 +1,34 @@
+---
+- name: Make sure rabbitmq-server is enabled and running
+  ansible.builtin.service:
+    name: rabbitmq-server
+    state: started
+
+- name: Is rabbitmq_user set
+  ansible.builtin.assert:
+    that:
+      - rabbitmq_user != null
+    fail_msg: "Set the rabbitmq_user variable"
+
+- name: Is rabbitmq_password set
+  ansible.builtin.assert:
+    that:
+      - rabbitmq_password != null
+    fail_msg: "Set the rabbitmq_password variable"
+
+- name: Is rabbitmq_vhost set
+  ansible.builtin.assert:
+    that:
+      - rabbitmq_vhost != None
+    fail_msg: "Set the rabbitmq_vhost variable"
+
+- name: Create rabbitmq user
+  community.rabbitmq.rabbitmq_user:
+    user: "{{ rabbitmq_user }}"
+    password: "{{ rabbitmq_password }}"
+    vhost: "{{ rabbitmq_vhost }}"
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+  when: false

@@ -12,6 +12,18 @@
     - rabbitmq
     - rabbitmq.setup
 
+- name: Create vhost for app
+  ansible.builtin.import_tasks: create-vhost.yml
+  tags:
+    - rabbitmq
+    - rabbitmq.setup
+
+- name: Create vhost user
+  ansible.builtin.import_tasks: create-user.yml
+  tags:
+    - rabbitmq
+    - rabbitmq.setup
+
 - name: Set the state of the service
   ansible.builtin.service:
     name: rabbitmq-server

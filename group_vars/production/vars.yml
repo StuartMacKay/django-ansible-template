@@ -2,14 +2,6 @@
 # The name of the (software) environment
 env_name: production
 
-# The username/password for the account that connects to message broker
-broker_user: "{{ vault_broker_user }}"
-broker_password: "{{ vault_broker_password }}"
-# The host for the message broker
-broker_host: "localhost"
-# The broker virtual host for the app
-broker_vhost: "{{ app_name }}"
-
 # Django debug mode
 django_debug: false
 # The unique key used in cryptographic signing
@@ -34,3 +26,9 @@ postgresql_user: "{{ vault_postgresql_user }}"
 postgresql_password: "{{ vault_postgresql_password }}"
 # The name of the database
 postgresql_database: "{{ app_name }}"
+
+# The username/password for the account that connects to message broker
+rabbitmq_user: "{{ vault_rabbitmq_user }}"
+rabbitmq_password: "{{ vault_rabbitmq_password }}"
+# The broker virtual host for the app
+rabbitmq_vhost: "{{ app_name }}"
