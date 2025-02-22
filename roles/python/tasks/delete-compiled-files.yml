@@ -1,0 +1,4 @@
+---
+- name: Delete compiled python files in virtualenv
+  ansible.builtin.command: "find {{ app_virtualenv_dir }} -type f -name \"*.py[co]\" -delete -o -type d -name __pycache__ -delete"
+  changed_when: false

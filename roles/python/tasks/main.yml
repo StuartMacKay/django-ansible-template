@@ -14,6 +14,13 @@
     - python
     - python.venv
 
+- name: Delete compiled python files in virtualenv
+  ansible.builtin.import_tasks: delete-compiled-files.yml
+  tags:
+    - python
+    - python.requirements
+    - deploy
+
 - name: Install requirements
   ansible.builtin.import_tasks: install-requirements.yml
   tags:
