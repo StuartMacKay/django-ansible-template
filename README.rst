@@ -30,7 +30,7 @@ Project Layout
     │        ├── vars.yml
     │        └── vault.yml
     ├── inventories
-    │   └── appserver.yml
+    │   └── single.yml
     ├── keys
     │   ├── id_rsa-project
     │   └── id_rsa-project.pub
@@ -52,8 +52,8 @@ variables stored in a vault. The password for each vault is 'password'. You
 MUST at least change the password for production.
 
 ``inventories`` contains sample inventories for deploying to different server
-configurations. ``appserver.yml`` is the only example included right now and if
-for deploying the application to a single server.
+configurations. ``single.yml`` is the only example included right now and if
+for deploying the application, database, and message broker to a single server.
 
 ``keys`` contains a sample SSH key which can be added to your key chain, using
 ``ssh-add`` to get start with deployments to a development server. It is also
@@ -91,6 +91,29 @@ etc.
 from a virtual environment. There is also an direnv configuration file,
 ``.envrc`` so you can activate the virtualenv automatically whenever you
 ``cd`` to the directory.
+
+Variables
+---------
+Variables can be defined at many levels in a playbook, each with different
+priorities. This project tries to keep things simple, easy to understand,
+and so stay sane. There are three levels:
+
+1. Role variables, which provide sensible defaults for configuring a service.
+   For example, roles/postgresql/defaults/main.yml
+
+2. Group variables, which define the environment for servers, either by the
+   role they play, e.g. appserver, or the environment, e.g. production.
+
+3. Finally there are deployment variables, which define how the application
+   is deployed - which service is deployed where.
+
+Role variables provide the basic definitions, which are then overridden by group
+variables, which in turn are overridden by deployment variables. Ansible's variable
+precedence rules are much more complex than this, but this provides a simple,
+well-organised, easy to work with, easy to manage, model.
+
+A number of variables, e.g. ``app_repository`` are set to ``!!null`. You need
+to set these (obviously) according to your application's needs.
 
 Security
 --------
@@ -134,7 +157,7 @@ Create an inventory from the example in the ``deploy`` directory:
 
    cp inventory.example staging
 
-Next edit the inventory to see the IP address of a local virtual machine:
+Next edit the inventory to set the IP address of a local virtual machine:
 
 .. code-block:: ini
 

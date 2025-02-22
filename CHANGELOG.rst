@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Update README to describe how the variables are organised.
+
 * Renamed 'development' group_vars to 'staging'.
 
 * Delete the app_front_dir variable, it is specific to the project layout.
