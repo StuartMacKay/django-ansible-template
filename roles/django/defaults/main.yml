@@ -5,9 +5,6 @@ django_settings_module: "project.settings"
 # The hosts allowed to connect to the server
 django_allowed_hosts: "{{ app_domain_name | default(inventory_hostname) }}"
 
-# Bind address for gunicorn
-gunicorn_bind: "unix:{{ app_run_dir }}/gunicorn.sock"  # noqa: var-naming[no-role-prefix]
-
 # The set of environment variables needed to configure Django
 django_environment:
   BROKER_URL: "{{ rabbitmq_uri }}"
@@ -19,4 +16,3 @@ django_environment:
   DJANGO_SECRET_KEY: "{{ django_secret_key }}"
   DJANGO_STATIC_ROOT: "{{ app_static_dir }}"
   DJANGO_WATCHMAN_TOKENS: "{{ django_watchman_tokens }}"
-  GUNICORN_BIND: "{{ gunicorn_bind }}"

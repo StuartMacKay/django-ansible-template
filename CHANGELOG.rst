@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Separate configuring gunicorn into a role.
+
 * Reorganised RabbitMQ variables and tasks to decouple it from the Django role.
 
 * Reorganised postgreSQL variables and tasks to decouple it from the Django role.

@@ -1,0 +1,13 @@
+---
+# The wsgi settings module
+gunicorn_settings_module: "{{ app_name }}.wsgi"
+
+# The configuration file for gunicorn
+gunicorn_configuration_file: "{{ app_root_dir }}/{{ app_name }}/gunicorn.py"
+
+# Bind address for gunicorn
+gunicorn_bind: "unix:{{ app_run_dir }}/gunicorn.sock"  # noqa: var-naming[no-role-prefix]
+
+# The set of environment variables needed to configure gunicorn
+gunicorn_environment:
+  GUNICORN_BIND: "{{ gunicorn_bind }}"

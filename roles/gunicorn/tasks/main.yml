@@ -1,0 +1,8 @@
+---
+- name: Add gunicorn to supervisor
+  ansible.builtin.import_tasks: setup-supervisor.yml
+  tags:
+    - gunicorn
+    - gunicorn.setup
+  notify:
+    - "Restart supervisor"
