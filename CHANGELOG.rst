@@ -4,6 +4,8 @@ Changelog
 
 0.0.2 (2025-02-22)
 ------------------
+* Add a handler to reload nginx after enabling the site.
+
 * Set the USER variable in the gunicorn process environment, otherwise it cannot
   read the .env file.
 

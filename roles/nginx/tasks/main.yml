@@ -24,6 +24,8 @@
   tags:
     - nginx
     - nginx.setup
+  notify:
+    - "Reload nginx"
 
 - name: Set the state of the service
   ansible.builtin.service:
