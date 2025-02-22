@@ -33,3 +33,6 @@ certbot_enabled: true
 # Email used for registration and recovery contact.
 # Use a comma-separated list for multiple emails
 certbot_admin_email: "{{ vault_certbot_admin_email }}"
+
+# Use fail2ban
+fail2ban_enabled: true
