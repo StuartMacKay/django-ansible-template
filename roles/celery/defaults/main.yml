@@ -1,21 +1,8 @@
 ---
-# Default name for the RabbitMQ vhost.
-# Set this to an empty string to use the default vhost provided by RabbitMQ
-broker_vhost: "{{ app_name }}"  # noqa: var-naming[no-role-prefix]
-
-# Default name for the database
-db_name: "{{ app_name }}"  # noqa: var-naming[no-role-prefix]
-
-# The URI for connecting to the RabbitMQ message broker
-celery_broker_uri: "amqp://{{ broker_user }}:{{ broker_password }}@{{ broker_host }}:{{ rabbitmq_port }}/{{ broker_vhost }}"
-
-# The URI for connecting to the PostgreSQL database server
-celery_database_uri: "postgres://{{ db_user }}:{{ db_password }}@{{ db_host }}:{{ postgresql_port }}/{{ db_name }}"
-
-# The set of environment variables needed to configure Django
+# The set of environment variables needed to specifically configure celery.
 celery_environment:
-  BROKER_URL: "{{ celery_broker_uri }}"
-  DATABASE_URL: "{{ celery_database_uri }}"
+  BROKER_URL: "{{ rabbitmq_uri }}"
+  DATABASE_URL: "{{ postgres_uri }}"
   DJANGO_DEBUG: "{{ django_debug }}"
   DJANGO_ENV: "{{ env_name }}"
   DJANGO_MEDIA_ROOT: "{{ app_media_dir }}"
