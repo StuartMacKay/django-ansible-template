@@ -4,6 +4,8 @@ Changelog
 
 Unreleased
 ----------
+* Deleted the django_debug variable, it is specific to an app.
+
 * Deleted the env_name variable, it is specific to an app.
 
 * Add task to memcached after the Django app is deployed.
