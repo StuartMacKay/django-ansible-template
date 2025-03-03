@@ -28,6 +28,15 @@
     - deploy
 
 - name: Notify memcached
-  meta: noop
+  command: /bin/true
+  tags:
+    - deploy
   notify:
     - "Restart memcached"
+
+- name: Notify supervisor
+  command: /bin/true
+  tags:
+    - deploy
+  notify:
+    - "Restart supervisor"
