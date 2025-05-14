@@ -4,7 +4,7 @@
     name: "{{ item.username }}"
     uid: "{{ item.uid | default(omit, True) }}"
     password: "{{ item.password }}"
-    update_password: "on_create"
+    update_password: "{{ item.update_password }}"
     shell: "{{ item.shell }}"
     createhome: true
     comment: "{{ item.comment }}"
