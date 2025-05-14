@@ -1,4 +1,15 @@
 ---
+
+- name: Is django_settings_module set
+  ansible.builtin.assert:
+    that:
+      - django_settings_module != None
+    fail_msg: "Set the django_settings_module variable"
+  tags:
+    - django
+    - django.setup
+    - deploy
+
 - name: Delete compiled python files in app
   ansible.builtin.import_tasks: delete-compiled-files.yml
   tags:

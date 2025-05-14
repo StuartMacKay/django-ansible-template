@@ -1,4 +1,22 @@
 ---
+- name: Is gunicorn_settings_module set
+  ansible.builtin.assert:
+    that:
+      - gunicorn_settings_module != None
+    fail_msg: "Set the gunicorn_settings_module variable"
+  tags:
+    - gunicorn
+    - gunicorn.setup
+
+- name: Is gunicorn_configuration_file set
+  ansible.builtin.assert:
+    that:
+      - gunicorn_configuration_file != None
+    fail_msg: "Set the gunicorn_configuration_file variable"
+  tags:
+    - gunicorn
+    - gunicorn.setup
+
 - name: Add gunicorn to supervisor
   ansible.builtin.import_tasks: setup-supervisor.yml
   tags:

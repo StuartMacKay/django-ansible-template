@@ -1,9 +1,9 @@
 ---
 # The wsgi settings module
-gunicorn_settings_module: "{{ app_name }}.wsgi"
+gunicorn_settings_module: !!null
 
 # The configuration file for gunicorn
-gunicorn_configuration_file: "{{ app_root_dir }}/{{ app_name }}/gunicorn.py"
+gunicorn_configuration_file: !!null
 
 # Bind address for gunicorn
 gunicorn_bind: "unix:{{ app_run_dir }}/gunicorn.sock"  # noqa: var-naming[no-role-prefix]

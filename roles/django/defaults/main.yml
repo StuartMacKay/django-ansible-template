@@ -1,6 +1,6 @@
 ---
 # The path to the settings module
-django_settings_module: "project.settings"
+django_settings_module: !!null
 
 # The hosts allowed to connect to the server
 django_allowed_hosts: "{{ app_domain_name | default(inventory_hostname) }}"
