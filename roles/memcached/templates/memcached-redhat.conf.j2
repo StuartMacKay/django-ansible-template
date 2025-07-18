@@ -1,6 +1,0 @@
-USER="{{ memcached_user }}"
-CACHESIZE="{{ memcached_memory_mb }}"
-MAXCONN="{{ memcached_connections }}"
-PORT="{{ memcached_port }}"
-
-OPTIONS="{% for ip in memcached_ips %}-l {{ ip }} {% endfor %} -t {{ memcached_threads }} -I {{ memcached_item_size }} {{ memcached_verbosity }} >> {{ memcached_log_file }} 2>&1"

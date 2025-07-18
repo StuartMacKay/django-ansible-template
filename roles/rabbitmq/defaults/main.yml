@@ -6,7 +6,7 @@ rabbitmq_signing_keys:
 # See, Installing on Debian and Ubuntu
 # https://www.rabbitmq.com/install-debian.html
 
-rabbitmq_deb_repositories:
+rabbitmq_repositories:
   - 'deb https://ppa1.novemberain.com/rabbitmq/rabbitmq-erlang/deb/ubuntu {{ ansible_distribution_release }} main'
   - 'deb https://ppa2.novemberain.com/rabbitmq/rabbitmq-erlang/deb/ubuntu {{ ansible_distribution_release }} main'
   - 'deb https://ppa1.novemberain.com/rabbitmq/rabbitmq-server/deb/ubuntu {{ ansible_distribution_release }} main'
@@ -14,7 +14,7 @@ rabbitmq_deb_repositories:
 
 # Pin by adding the version numbers
 # but see, https://www.rabbitmq.com/which-erlang.html
-rabbitmq_deb_packages:
+rabbitmq_packages:
   - 'erlang'
   - 'rabbitmq-server'
 

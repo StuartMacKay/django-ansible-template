@@ -1,16 +1,7 @@
 ---
-- name: Generate self-signed certificate (Debian)
+- name: Generate self-signed certificate
   ansible.builtin.command:
     cmd: >
       openssl req -x509 -nodes -subj '/CN={{ ansible_hostname }}' -days 365
       -newkey rsa:4096 -sha256 -keyout /etc/ssl/private/server.key -out /etc/ssl/private/server.crt
     creates: "/etc/ssl/private/server.crt"
-  when: ansible_os_family == 'Debian'
-
-- name: Generate self-signed certificate (RedHat)
-  ansible.builtin.command:
-    cmd: >
-      openssl req -x509 -nodes -subj '/CN={{ ansible_hostname }}' -days 365
-      -newkey rsa:4096 -sha256 -keyout /etc/pki/tls/private/server.key -out /etc/pki/tls/private/server.crt
-    creates: "/etc/pki/tls/private/server.crt"
-  when: ansible_os_family == 'RedHat'

@@ -1,6 +1,6 @@
 ---
 # Packages for Debian systems
-memcached_deb_packages:
+memcached_packages:
   - memcached
 
 # User daemon runs as

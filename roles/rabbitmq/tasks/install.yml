@@ -9,11 +9,11 @@
   ansible.builtin.apt_repository:
     repo: "{{ item }}"
     state: present
-  loop: "{{ rabbitmq_deb_repositories }}"
+  loop: "{{ rabbitmq_repositories }}"
 
 - name: Install packages
   ansible.builtin.apt:
-    name: "{{ rabbitmq_deb_packages }}"
+    name: "{{ rabbitmq_packages }}"
 
 - name: Enable/disable the service at boot
   ansible.builtin.service:

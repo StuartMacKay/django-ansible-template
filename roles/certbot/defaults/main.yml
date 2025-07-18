@@ -4,6 +4,6 @@
 # certbot_admin_email
 
 # Packages to install on Debian based distributions
-certbot_deb_packages:
+certbot_packages:
   - certbot
   - python3-certbot-nginx

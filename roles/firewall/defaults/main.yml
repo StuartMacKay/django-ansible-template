@@ -1,6 +1,6 @@
 ---
 # Packages for Debian systems
-firewall_deb_packages:
+firewall_packages:
   - ufw
 
 # Flag to control whether firewall is installed.

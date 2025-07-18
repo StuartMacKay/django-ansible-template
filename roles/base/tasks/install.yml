@@ -3,4 +3,4 @@
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600  # an hour
-    name: "{{ base_deb_packages }}"
+    name: "{{ base_packages }}"

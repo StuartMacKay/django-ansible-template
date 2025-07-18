@@ -1,9 +1,9 @@
 ---
 - name: Install packages
   ansible.builtin.apt:
-    name: "{{ supervisor_deb_packages }}"
+    name: "{{ memcached_packages }}"
 
 - name: Enable/disable the service at boot
   ansible.builtin.service:
-    name: supervisor
-    enabled: "{{ supervisor_enabled }}"
+    name: memcached
+    enabled: "{{ memcached_enabled }}"

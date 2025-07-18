@@ -1,7 +1,7 @@
 ---
 - name: Set up Memcached
   ansible.builtin.template:
-    src: memcached-debian.conf.j2
+    src: memcached.conf.j2
     dest: /etc/memcached.conf
     owner: root
     group: root

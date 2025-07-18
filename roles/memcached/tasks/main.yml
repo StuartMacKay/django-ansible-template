@@ -1,14 +1,12 @@
 ---
 - name: Install memcached for Debian systems
-  ansible.builtin.import_tasks: install-debian.yml
-  when: ansible_os_family == 'Debian'
+  ansible.builtin.import_tasks: install.yml
   tags:
     - memcached
     - memcached.install
 
 - name: Set up memcached for Debian systems
-  ansible.builtin.import_tasks: setup-debian.yml
-  when: ansible_os_family == 'Debian'
+  ansible.builtin.import_tasks: setup.yml
   tags:
     - memcached
     - memcached.install

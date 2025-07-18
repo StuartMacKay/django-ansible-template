@@ -9,11 +9,11 @@
   ansible.builtin.apt_repository:
     repo: "{{ item }}"
     state: present
-  loop: "{{ postgresql_deb_repositories }}"
+  loop: "{{ postgresql_repositories }}"
 
 - name: Install packages
   ansible.builtin.apt:
-    name: "{{ postgresql_deb_packages }}"
+    name: "{{ postgresql_packages }}"
 
 - name: Ensure locale is available
   community.general.locale_gen:

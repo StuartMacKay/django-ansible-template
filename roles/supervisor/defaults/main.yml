@@ -1,6 +1,6 @@
 ---
 # Packages for Debian based systems
-supervisor_deb_packages:
+supervisor_packages:
   - supervisor
 
 # Does the service start at boot time

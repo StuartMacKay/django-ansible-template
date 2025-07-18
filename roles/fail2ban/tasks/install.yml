@@ -1,4 +1,4 @@
 ---
 - name: Install fail2ban for Debian systems
   ansible.builtin.apt:
-    name: "{{ fail2ban_deb_packages }}"
+    name: "{{ fail2ban_packages }}"

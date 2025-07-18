@@ -2,12 +2,12 @@
 postgresql_signing_keys:
   - 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
 
-postgresql_deb_repositories:
+postgresql_repositories:
   - 'deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main'
 
 # Remove the version numbers if you just want the latest versions
 # The psycopg2 package is needed on the host so ansible can talk to postgreSQL
-postgresql_deb_packages:
+postgresql_packages:
   - 'postgresql'
   - 'postgresql-contrib'
   - 'python3-psycopg2'

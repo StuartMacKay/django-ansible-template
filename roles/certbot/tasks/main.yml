@@ -1,7 +1,7 @@
 ---
 - name: Install certbot for Debian systems
-  ansible.builtin.import_tasks: install-debian.yml
-  when: certbot_enabled and ansible_os_family == 'Debian'
+  ansible.builtin.import_tasks: install.yml
+  when: certbot_enabled
   tags:
     - certbot
     - certbot.install

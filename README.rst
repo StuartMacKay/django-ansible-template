@@ -2,10 +2,10 @@
 Ansible Virtualenv
 ==================
 This template contains an ansible playbook for deploying a Django-based
-app server to either a staging or production environment running on
-a Virtual Private Server or a Dedicated Server. The project uses a virtualenv
-for running Django and Celery so the application is completely isolated
-from the system python.
+app server running a Debian-based operating system, to either a staging
+or production environment running on a Virtual Private Server or a Dedicated
+Server. The project uses a virtualenv for running Django and Celery so the
+application is completely isolated from the system python.
 
 This template is intended to be used with Django sites created using the
 `django-project-template`_. It should be easily changed to suit any Django
@@ -74,10 +74,8 @@ comprehend and easy to refactor and add new features. This means there is
 probably more yaml than is healthy but you will find that things are easy
 to find and it's easy to throw away the stuff you don't want. There are
 separate tasks for each operating system, for example, when installing
-native packages. Currently only Debian based systems are supported. This
-will be expanded for RedHat (Centos) based systems shortly. The variables
-for role define sensible defaults for each task. You can override these
-as needed, in the group_vars.
+native packages. The variables for role define sensible defaults for each
+task. You can override these as needed, in the group_vars.
 
 ``playbook.yml`` simply runs through all the roles to install everything
 needed for the app server. It is opinionated. It assumes there are two

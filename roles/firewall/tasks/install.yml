@@ -1,7 +1,7 @@
 ---
 - name: Install Uncomplicated Firewall
   ansible.builtin.apt:
-    name: "{{ firewall_deb_packages }}"
+    name: "{{ firewall_packages }}"
 
 - name: Set default policy
   community.general.ufw:

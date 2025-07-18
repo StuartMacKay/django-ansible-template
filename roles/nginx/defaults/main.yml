@@ -1,5 +1,5 @@
 ---
-nginx_deb_packages:
+nginx_packages:
   - nginx
 
 # Does the service start at boot time

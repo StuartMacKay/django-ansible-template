@@ -1,7 +1,7 @@
 ---
 - name: Install Nginx
   ansible.builtin.apt:
-    name: "{{ nginx_deb_packages }}"
+    name: "{{ nginx_packages }}"
 
 - name: Set up parameters for Diffie-Hellman Key Exchange
   ansible.builtin.command:
